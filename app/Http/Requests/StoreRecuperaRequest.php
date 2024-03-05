@@ -24,9 +24,9 @@ class StoreRecuperaRequest extends FormRequest
     public function rules()
     {
          return [
-            'email'=> 'required|email|between:6,50|exists:users',
-            'cedula'=> 'required|exists:users',
-            'password' => 'required|between:6,10|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-_.]).{6,}$/|confirmed',
+            //'email'=> 'required|email|between:6,50|exists:users',
+            'cedula'=> 'required|exists:users,cedula',
+            'password' => 'required|between:6,15|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-_.]).{6,}$/|confirmed',
 
         ];
     }
@@ -38,9 +38,9 @@ class StoreRecuperaRequest extends FormRequest
                 'password.regex' => 'Su contraseña debe tener entre 6 y 10 caracteres y contener al menos una letra mayúscula, al menos una letra minúscula,
                  al menos un valor numérico y al menos un caracter especial, P.E.: #?!@$%^&*-_.',
                 'cedula.exists' => '¡Cedula no registrada en el sistema!. Por favor intente de nuevo',
-                'email.exists' => '¡Correo  no registrado en el sistema!. Por favor intente de nuevo ',
+                //'email.exists' => '¡Correo  no registrado en el sistema!. Por favor intente de nuevo ',
                 'password.between' => 'Es requerida la validacion',
-                'email.required' => 'Es requerida la validacion',
+                //'email.required' => 'Es requerida la validacion',
                 'cedula.required' => 'Es requerida la validacion',
         ];
     }

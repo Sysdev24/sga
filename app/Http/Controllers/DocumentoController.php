@@ -30,9 +30,10 @@ class DocumentoController extends Controller
 {
 	public function index(){
 
-       $nueva = RangoFecha::orderBy('fecha_documento', 'desc') ->paginate(7);
-	   return view('carga_documento.index', $nueva)
-	   ->with(['documentos' => $nueva]);
+       $documentos = RangoFecha::get();//orderBy('fecha_documento', 'desc') ->paginate(7);
+       //$documentos = CargaDocumento::orderBy('fecha_documento','asc')->paginate(7);
+	   return view('carga_documento.index', compact('documentos'));
+	   //->with(['documentos' => $nueva]);
 
 	}
 
@@ -114,7 +115,7 @@ class DocumentoController extends Controller
     {
 		$tipo_documentos = TipoDocumento::orderBy('descripcion', 'ASC')->get();
 		$destinatarios = User::orderBy('name', 'ASC')->get();
-		//$status_documentos = StatusDocumentos::orderBy('descripcion', 'ASC')->get();
+		//$status_documentos = Status::orderBy('descripcion', 'ASC')->get();
 		$gerencias = GerenciaGeneral::orderBy('descripcion', 'ASC')->get();
 		$gerencias2 = GerenciaGeneral::orderBy('descripcion', 'ASC')->get();
 		$areas = AreaTrabajo::orderBy('descripcion', 'ASC')->get();
@@ -124,11 +125,14 @@ class DocumentoController extends Controller
 		return view('carga_documento.create')
 		->with('tipo_documentos',$tipo_documentos)
 		->with('destinatarios',$destinatarios)
+        ->with('gerencias2',$gerencias2)
 		//->with('status_documentos',$status_documentos)
-		->with('gerencias',$gerencias)
-		->with('areas',$areas)
-		->with('gerencias2',$gerencias2)
-		->with('areas2',$areas2);
+        ->with('areas2',$areas2)
+        ->with('areas',$areas)
+		->with('gerencias',$gerencias);
+
+
+
     }
 
 	public function store(Request $request)

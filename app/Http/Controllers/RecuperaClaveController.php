@@ -18,6 +18,8 @@ class RecuperaClaveController extends Controller
     public function index()
     {
         return view('auth.recuperarClave');
+
+        //dd('hola');
     }
 
     /**
@@ -29,8 +31,8 @@ class RecuperaClaveController extends Controller
     protected function store(StoreRecuperaRequest $request)
     {
 
-          $usuario = User::where('email', $request->email)
-                          ->where('cedula', $request->cedula)
+          $usuario = User:://where('email', $request->email)
+                          where('cedula', $request->cedula)
                           ->first();
 
         //$usuario = User::where('cedula', $request->cedula)->first();
@@ -42,15 +44,16 @@ class RecuperaClaveController extends Controller
             {
 
                 $usuario->password = bcrypt($request->password);
+                //dd($usuario);
                 //$usuario->change_password_admin = null;
 
                 if($usuario->save())
                 {
-                   return redirect('/login')->with('message', 'La información fue almacenada satisfactoriamente');
+                   return redirect('/login')->with('success', 'Su contraseña ha sido cambiada Exitosamente');
                 }
                 else
                 {
-                  return redirect('/login')->with('status', 'Se ha presentado un error.!');
+                  return redirect('/login')->with('error', 'Se ha presentado un error.!');
                 }
          }
 

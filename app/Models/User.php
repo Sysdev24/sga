@@ -28,6 +28,8 @@ class User extends Authenticatable
         'estatus'
     ];
 
+    protected $table   = 'users';
+
     public function adminlte_image()
     {
         return 'https://picsum.photos/300/300';

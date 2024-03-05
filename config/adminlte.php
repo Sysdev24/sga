@@ -293,7 +293,7 @@ return [
                     'url'  => '/usuarios',
                     'icon' => 'fa fa-user-plus',
                     'icon_color' => 'green',
-	                'can'  => 'usuarios.index',
+	                //'can'  => 'usuarios.index',
                 ],
 
                 [
@@ -301,7 +301,7 @@ return [
                     'url'  => '/roles',
                     'icon' => 'fa fa-users',
                     'icon_color' => 'green',
-                    'can'  => 'roles.index',
+                    //'can'  => 'roles.index',
                 ],
 
                 [
@@ -309,8 +309,8 @@ return [
                     'url'  => '/permisos',
                     'icon' => 'fa fa-id-card',
                     'icon_color' => 'green',
-                    'can'  => 'permisos.index',
-                ],
+                    //'can'  => 'permisos.index',
+                ],//
                 [
                 'text'    => 'Gerencias',
                 'icon'    => 'fas fa-sitemap',

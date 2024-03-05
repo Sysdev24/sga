@@ -59,19 +59,6 @@
 
              <div  class="row">
                 <div class="form-group col-6">
-                  <div class="form-group">
-                    <label for="email">Correo Electrónico:</label>
-                    <input id="email" name="email" type="email" placeholder="Ingrese Correo Electrónico" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                    @if ($errors->has('email'))
-                        <span class="text-danger">
-                          <strong>{{ $errors->first('email') }}</strong>
-                        </span>
-                    @endif
-                  </div>
-                </div>
-
-
-                <div class="form-group col-6">
 
                     <label for="cedula">Cédula:</label>
                     <input id="cedula" name="cedula" type="numeric" placeholder="Ingrese Cedula" class="form-control @error('cedula') is-invalid @enderror" name="cedula" value="{{ old('cedula') }}" required autocomplete="cedula" autofocus>
@@ -101,7 +88,7 @@
                           <div class="form-group col-6">
                               <label for="">Contraseña:</label>
                               <div class="input-group">
-                                <input type="password" class="form-control" name="password" id="password" value="{{ old('password') }}" />
+                                <input type="password" class="form-control" name="password" id="password" value="{{--  --}}" />
                                 <span class="input-group-text">
                                   <i class="fa fa-exclamation-circle" style="color:red;" data-placement="right"
                                     data-toggle="popover" title="Nueva contraseña"

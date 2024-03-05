@@ -153,7 +153,7 @@ left: 10px;
         </div>
     </div>
     <div class="card-footer mr-auto">
-    {{ $documentos->links() }}
+    {{-- $documentos->links() --}}
     </div>
 </div>
 
@@ -168,7 +168,7 @@ left: 10px;
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
 
-<script>
+{{--  <script>
     $(document).ready(function(){
     $('.input-daterange').datepicker({
         format: 'dd-mm-yyyy',
@@ -187,7 +187,7 @@ left: 10px;
         });
 
     });
-        </script>
+        </script> --}}
 
 <script>
     $(document).ready(function() {
@@ -196,7 +196,7 @@ left: 10px;
             "order": [[ 1, 'desc' ]],
             //"processing": true,
             searching: false,
-            paginate: false,
+            paginate: true,
             language: {
             url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',
 

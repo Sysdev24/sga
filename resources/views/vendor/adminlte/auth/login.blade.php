@@ -60,11 +60,16 @@
 <br>
 
 @section('auth_body')
-@if ($errors)
-<div class="text-danger text-center m-3">
-    {{-- <strong>{{ print_r($errors) }}</strong>
-</div> --}}
+@if (session('success'))
+<div class="alert alert-success desva">
+    {{ session('success') }}
+</div>
+@endif
 
+@if (session('error'))
+<div class="alert alert-danger desva">
+  <center><h5><b>{{ session('error') }} </b></h5></center>
+</div>
 @endif
     <form action="{{ $login_url }}" method="post">
         @csrf
