@@ -83,7 +83,7 @@ left: 10px;
         </div>
 </div>
        {{-- FIN BUSCADOR --}}
-
+        {{-- $adm --}}
     {{--   --}}
         <div class="card">
             <div class="card-body">

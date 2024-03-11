@@ -7,9 +7,21 @@
 @stop
 
 @section('content')
+
 <div class="row">
     <div class="col-12">
         <div class="card">
+            @if (session('success'))
+                <div class="alert alert-success desva">
+                    {{ session('success') }}
+                </div>
+                @endif
+
+                @if (session('error'))
+                <div class="alert alert-danger desva">
+                  <center><h5><b>{{ session('error') }} </b></h5></center>
+                </div>
+                @endif
             <div class="card-body">
 
          <div class="row" style="margin-bottom: 20px; float: right;">
@@ -24,11 +36,11 @@
        <tr>
         <td>{{ $a->descripcion }}</td>
         <td align="center">
-					
+
             <!-- <abbr title="Ver Información"> <a href="{{ url('area_trabajo/'.$a->id.'/show') }}" class="btn btn-success btn-sm"> <i class="fa fa-eye" aria-hidden="true"></i></a></abbr> -->
-            
+
             <abbr title="Editar Información"> <a href="{{ url('area_trabajo/'.$a->id.'/edit') }}" class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a></abbr>
-            
+
             <!-- <abbr title="Eliminar Información"> <form action="{{ url('area_trabajo/'.$a->id) }}" class="btn btn-success btn-sm" method="POST" style="display: inline-block;" onsubmit="return confirm('Seguro desea eliminar este usuario?')">
             @csrf
             {{-- method_field('Delete') --}}
@@ -37,7 +49,7 @@
                 </button></abbr> -->
 
         </form>
-        
+
     </td>
   </tr>
 @endforeach

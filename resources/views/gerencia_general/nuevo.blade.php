@@ -3,7 +3,7 @@
 @section('title', 'Crear Gerencia Nacional')
 
 @section('content_header')
-    <b><h1 class="m-0 text-dark">Crear Gerencia Nacional</h1></b>
+    <b><h1 class="m-0 text-dark">Editar Gerencia Nacional</h1></b>
 @stop
 
 @section('content')

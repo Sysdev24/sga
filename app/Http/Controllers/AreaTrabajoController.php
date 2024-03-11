@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\AreaTrabajoRequest;
 use App\Models\AreaTrabajo;
-
+use App\Models\GerenciaGeneral;
 use Illuminate\Http\Request;
 
 class AreaTrabajoController extends Controller
@@ -14,10 +14,10 @@ class AreaTrabajoController extends Controller
   {
   //
      $datos['areaTrabajos']=AreaTrabajo::paginate(5);
-
+        //dd($datos);
       return view('area_trabajo.index', $datos);
   }
-  
+
   /**
    *Muestra el formulario para crear un nuevo recurso
    *
@@ -26,8 +26,9 @@ class AreaTrabajoController extends Controller
   public function create()
   {
       //
-      $areaTrabajos= AreaTrabajo::orderBy('descripcion', 'ASC')->get();
-      return view('area_trabajo.create')->with(['areaTrabajos' => $areaTrabajos]);
+      $gergral =GerenciaGeneral::orderBy('descripcion', 'ASC')->get();
+      //$areaTrabajos= AreaTrabajo::orderBy('descripcion', 'ASC')->get();
+      return view('area_trabajo.create')->with(['gergral' => $gergral]);
   }
 
   /**
@@ -40,11 +41,25 @@ class AreaTrabajoController extends Controller
   {
       //Esta linea responde en un formato json toda la informafion de datos de AreaTrabajo
       //$datosArea= request()->all();
-      $datosArea= request()->except('_token');
-      AreaTrabajo::insert($datosArea);
+      //$datosArea= request()->except('_token');
+      //AreaTrabajo::insert($datosArea);
+       //return response()->json($datosArea);
+      //return redirect('area_trabajo')->with('mensaje','Area Agregada con exito');
 
-      //return response()->json($datosArea);
-      return redirect('area_trabajo')->with('mensaje','Area Agregada con exito');
+      DB::transaction(function () use ($request ) {
+        $area = $request->validate([
+            'gergral_id'                  =>'required',
+            'descripcion'                 =>'required|max:500',],
+            $message = ['required'=>'el campo :attribute es requerido',
+            'max' => 'Te excediste del numero de caracteres permitidos'
+        ]);
+        //dd($profesiones);
+        $data2 = AreaTrabajo::create($area);
+    });
+        return redirect()->action([AreaTrabajoController::class, 'index'])
+        ->with('success', 'Registro Exitoso!');
+
+
   }
 
   /**
@@ -59,7 +74,7 @@ class AreaTrabajoController extends Controller
   }
 
   /**
-  * 
+  *
   *Muestra el formulario para editar el resource especificado.
   *
   * @param  int  $id
@@ -68,9 +83,12 @@ class AreaTrabajoController extends Controller
       public function edit($id)
   {
       //
-      $area=AreaTrabajo::findOrFail($id);
+      $areaTrabajos=AreaTrabajo::findOrFail($id);
+      //select('gergral.descripcion as gergral', 'area_trabajo.id', 'area_trabajo.descripcion as area' )
+      //->leftjoin('gergral', 'gergral.id' ,'=', 'area_trabajo.gergral_id')
 
-      return view('area_trabajo.edit', compact('area'));
+        //dd($areaTrabajos);
+      return view('area_trabajo.edit', compact('areaTrabajos'));
   }
 
   /**
@@ -83,11 +101,25 @@ class AreaTrabajoController extends Controller
       public function update(AreaTrabajoRequest $request, $id)
   {
       //
-      $datosArea = request()->except(['_token','_method']);
+      /*$datosArea = request()->except(['_token','_method']);
       AreaTrabajo::where('id', '=',$id)->update($datosArea);
 
       $area=AreaTrabajo::findOrFail($id);
-      return view('area_trabajo.edit', compact('area'));
+      return view('area_trabajo.edit', compact('area'));*/
+
+      $validated = $request->validate([
+        'descripcion'                 =>'required|max:500',
+
+    ],$message = ['required'=>'el campo :attribute es requerido',
+    'max' => 'Te excediste del numero de caracteres permitidos'
+
+    ]);
+        $area = AreaTrabajo::find($id);
+        $area->descripcion = $request->descripcion;
+
+        $area->save();
+
+       return redirect('/area_trabajo')->with('success', 'Actualizacion Exitosa!');
   }
 
   /**
@@ -103,6 +135,6 @@ class AreaTrabajoController extends Controller
       return redirect('area_trabajo')->with('mensaje','Area Eliminado con exito');
   }
 
-  
+
 }
 

@@ -22,6 +22,7 @@ use App\Models\RangoFecha;
 use Illuminate\Support\Facades\Storage;
 use Exception;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Expr\FuncCall;
 
 
@@ -30,10 +31,14 @@ class DocumentoController extends Controller
 {
 	public function index(){
 
+		$adm = Auth::user()->cedula;
+
        $documentos = RangoFecha::get();//orderBy('fecha_documento', 'desc') ->paginate(7);
        //$documentos = CargaDocumento::orderBy('fecha_documento','asc')->paginate(7);
-	   return view('carga_documento.index', compact('documentos'));
+	   return view('carga_documento.index', compact('documentos', 'adm'));
 	   //->with(['documentos' => $nueva]);
+
+
 
 	}
 

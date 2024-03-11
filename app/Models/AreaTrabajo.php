@@ -9,7 +9,8 @@ class AreaTrabajo extends Model
 {
     use HasFactory;
     protected $table   = 'area_trabajo';
-    public $timestamps = false;
+    public $timestamps = true;
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'gergral_id',

@@ -4,3 +4,5 @@
     @include('gerencia_general.nuevo',['modo'=>'Crear']);
 
     </form>
+
+    

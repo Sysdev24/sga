@@ -73,7 +73,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/area_trabajo', [App\Http\Controllers\AreaTrabajoController::class, 'index'])->name('area_trabajo.index');
     Route::get('/area_trabajo/create', [App\Http\Controllers\AreaTrabajoController::class, 'create'])->name('area_trabajo.create');
     Route::post('/area_trabajo', [App\Http\Controllers\AreaTrabajoController::class, 'store'])->name('area_trabajo.store');
-    Route::get('/area_trabajo/{id}', [App\Http\Controllers\AreaTrabajoController::class, 'show'])->name('area_trabajo.show');
     Route::get('/area_trabajo/{id}/edit', [App\Http\Controllers\AreaTrabajoController::class, 'edit'])->name('area_trabajo.edit');
     Route::patch('/area_trabajo/{id}', [App\Http\Controllers\AreaTrabajoController::class, 'update'])->name('area_trabajo.update');
     Route::delete('/area_trabajo/{id}', [App\Http\Controllers\AreaTrabajoController::class, 'destroy'])->name('area_trabajo.destroy');

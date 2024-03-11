@@ -19,11 +19,11 @@
 			</div>
 
 			<div class="col-md-6">
-				<select class="form-control" id="gergral_id" required>
+				<select class="form-control" id="gergral_id" name="gergral_id" required>
 					<option value="" selected>Seleccione una opción</option>
-					@foreach ($areaTrabajos as $areaTrabajo)
-					<option value="{{$areaTrabajo->id}}">{{$areaTrabajo->descripcion}} </option>
-					@endforeach 
+					@foreach ($gergral as $g)
+					<option value="{{$g->id}}">{{$g->descripcion}} </option>
+					@endforeach
 				</select>
 			</div>
 		</div>
@@ -33,7 +33,7 @@
 				</div>
 
 				<div class="col-md-6">
-					<input type="text" class="form-control" name="descripcion" id="descripcion" value="{{ isset($AreaTrabajo->descripcion)?$AreaTrabajo->descripcion:'' }}" required />
+					<input type="text" class="form-control" name="descripcion" id="descripcion" value="{{ isset($AreaTrabajo->descripcion)?$areaTrabajo->descripcion:'' }}" required />
 				</div>
 			</div>
 

@@ -92,7 +92,7 @@
                                 <span class="input-group-text">
                                   <i class="fa fa-exclamation-circle" style="color:red;" data-placement="right"
                                     data-toggle="popover" title="Nueva contraseña"
-                                    data-content="Su contraseña debe tener entre 6 y 10 caracteres y contener al menos una letra mayúscula, al menos una letra minúscula,
+                                    data-content="Su contraseña debe tener entre 4 y 10 caracteres y contener al menos una letra mayúscula, al menos una letra minúscula,
                                     al menos un valor numérico y al menos un caracter especial, P.E.: #?!@$%^&*-_.">
                                   </i>
                                 </span>
@@ -106,7 +106,7 @@
                           <div class="form-group col-6">
                               <label for="">Confirmar Contraseña:</label>
                               <div class="input-group">
-                                  <input class="form-control" type="password" name="password_confirmation" id="password_confirmation" value="{{ old('password_confirmation') }}" />
+                                  <input class="form-control" type="password" name="password_confirmation" id="password_confirmation" value="{{--  --}}" />
                                   <div class="input-group-append">
                                     <span class="input-group-text">
                                       <i class="fa fa-exclamation-circle" style="color:red;" data-placement="right"

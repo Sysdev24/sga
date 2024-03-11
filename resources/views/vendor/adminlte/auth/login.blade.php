@@ -66,9 +66,9 @@
 </div>
 @endif
 
-@if (session('error'))
+@if (session('errors'))
 <div class="alert alert-danger desva">
-  <center><h5><b>{{ session('error') }} </b></h5></center>
+  <center><h5><b>{{ session('errors') }} </b></h5></center>
 </div>
 @endif
     <form action="{{ $login_url }}" method="post">
