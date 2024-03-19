@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
-use DB;
+use Illuminate\Support\Facades\DB;
+use Validator;
 class UserController extends Controller
 {
      /**
@@ -40,33 +41,37 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-	$validated = $request->validate([
-            'name' => 'required|max:50',
-	       'email' =>'required|unique:users,email|email',
-	       'role' =>'required',
-	       'cedula' =>'required|max:8|min:5',
+    $validated = $request->validate([
+           'name'       => 'required|max:50',
+	       'email'      => 'required|unique:users,email|email',
+	       'role'       => 'required',
+           'estatus'    => 'required',
+	       'cedula'     => 'required|max:8|min:5',
+           'usuario'    => 'required|min:5|max:15',
             ],[
-               'name.required' => 'El campo nombre es requerido ',
-               'name.max' => 'El campo nombre debe tener un máximo de 50 carácteres ',
-               'email.required' => 'El campo correo es requerido ',
-               'email.unique' => 'Existe en nuestro sistema un usuario con el correo dado ',
-               'email.email'=>'debe indicar un correo de formato válido',
-               'role.required' => 'El campo role es requerido',
-               'cedula.required'=>'El campo cédula es requerido',
-               'cedula.max'=>'El campo cédula no debe ser mayor a 8 digitos',
-               'cedula.min'=>'El campo cédula debe ser mayor a 4 digitos',
+            'name.required'     => 'El campo nombre es requerido ',
+            'name.max'          => 'El campo nombre debe tener un máximo de 50 carácteres',
+            'email.required'    => 'El campo correo es requerido ',
+            'email.unique'      => 'Existe en nuestro sistema un usuario con el correo dado',
+            'email.email'       => 'Debe indicar un correo de formato válido',
+            'role.required'     => 'El campo role es requerido',
+            'cedula.required'   => 'El campo cédula es requerido',
+            'cedula.max'        => 'El campo cédula no debe ser mayor a 8 digitos',
+            'cedula.min'        => 'El campo cédula debe ser mayor a 5 digitos',
             ]);
+        //dd($request->all());
         $data = array(
-            'name' => $request->name,
-            'email' => $request ->email,
-            'usuario' => $request->usuario,
-	        'cedula' =>$request->cedula,
-            'estatus' =>$request->estatus,
+            'name'      => $request->name,
+            'email'     => $request->email,
+            'usuario'   => $request->usuario,
+	        'cedula'    => $request->cedula,
+            'estatus'   => $request->estatus,
 
         );
+        //dd($request->all());
 	//asignando role a usuario
         User::create($data)->assignRole($request->role);
-        return redirect('/usuarios')->with('message', 'Registro Exitoso!');
+        return redirect('/usuarios')->with('info', 'Registro Exitoso!');
     }
 
     /**

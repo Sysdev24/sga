@@ -90,11 +90,11 @@ class LoginController extends Controller
 
                         return back()->withErrors(array('password' => 'Clave LDAP inválida'))->withInput(request(['usuario']));
 
-                    } elseif ($validar_user_LDAP == "ERROR_LDAP") {
+                    /*} elseif ($validar_user_LDAP == "ERROR_LDAP") {
                         echo "Aqui esta";
-                        dd($validar_user_LDAP, $request->all(), 'Aqui esta');
+                        //dd($validar_user_LDAP, $request->all(), 'Aqui esta');
                         return back()->withErrors(array('ldap' => 'Error al validar el usuario en el servidor LDAP'))->withInput(request(['usuario']));
-
+                    */
                     } else {
                         if ($this->validate_User_By_Id($usuario->id)) {
 

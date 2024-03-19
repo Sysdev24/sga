@@ -37,7 +37,8 @@ class LDAPController extends Controller
 
             $server_LDAP = 'ldap://ldapr1-sb.corpoelec.com.ve';
             $domain = "dc=corpoelec,dc=gob,dc=ve";
-            $domain_mail = "@corpoelec.gob.ve";
+            //$domain_mail = "@corpoelec.gob.ve"; //este no funciona ya
+            //$uid = "B2500094"; //esto es lo que me pasaron nuevo
             $servidor_ldap = $server_LDAP; //El servidor controlador de dominio
             $dominio_NB = $domain; //Nombre del dominio
             $connect = ldap_connect($servidor_ldap, 389); //Conexion al Servidor

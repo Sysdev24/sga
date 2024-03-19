@@ -23,7 +23,7 @@
                  alt="{{ Auth::user()->name }}">
         @endif
         <span @if(config('adminlte.usermenu_image')) class="d-none d-md-inline" @endif>
-            {{ Auth::user()->name }}
+            <b class="text-white">Bienvenid@: {{mb_strtoupper (Auth::user()->name) }}  /  ROL : {{  mb_strtoupper(auth()->user()->roles()->first()->name ?? '') }}</b>
         </span>
     </a>
 

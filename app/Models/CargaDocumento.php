@@ -35,39 +35,39 @@ class CargaDocumento extends Model implements Auditable
 
         return $this->hasOne(GerenciaGeneral::class, 'id', 'gergral_receptor_id');
     }
-    
+
     public function areaEmisor(){
-    
+
         return $this->hasOne(AreaTrabajo::class, 'id', 'area_emisor_id');
     }
-      
+
     public function areaReceptor(){
-    
+
         return $this->hasOne(AreaTrabajo::class, 'id','area_receptor_id');
     }
 
     public function status(){
-    
-        return $this->hasOne(StatusDocumentos::class, 'id', 'status_doc_id');
+
+        return $this->hasOne(EstatusDocumentos::class, 'id', 'status_doc_id');
     }
 
     public function emisor(){
-    
+
         return $this->hasOne(User::class, 'id', 'usuario_receptor_id');
     }
-    
+
 
     public function receptor(){
-    
+
         return $this->hasOne(User::class, 'id', 'usuario_emisor_id');
     }
     public function tipoDocumento(){
-    
+
         return $this->hasOne(TipoDocumento::class, 'id', 'tipo_documento_id');
     }
 
     public function tipoObjecion(){
-    
+
         return $this->hasOne(Observaciones::class, 'id', 'objecion');
     }
 

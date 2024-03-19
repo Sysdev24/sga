@@ -41,11 +41,6 @@ class User extends Authenticatable
         return Administrador;
     } */
 
-    public function adminlte_profile_url()
-    {
-        return 'profile/username';
-    }
-
     /**
      * The attributes that should be hidden for serialization.
      *

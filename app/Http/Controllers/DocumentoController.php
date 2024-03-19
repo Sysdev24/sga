@@ -31,11 +31,11 @@ class DocumentoController extends Controller
 {
 	public function index(){
 
-		$adm = Auth::user()->cedula;
+	    //$adm = Auth::user()->cedula;
 
-       $documentos = RangoFecha::get();//orderBy('fecha_documento', 'desc') ->paginate(7);
+       $documentos = RangoFecha::orderBy('created_at','DESC')->get(); //->paginate(7);
        //$documentos = CargaDocumento::orderBy('fecha_documento','asc')->paginate(7);
-	   return view('carga_documento.index', compact('documentos', 'adm'));
+	   return view('carga_documento.index', compact('documentos'));
 	   //->with(['documentos' => $nueva]);
 
 
